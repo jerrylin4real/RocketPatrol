@@ -1,37 +1,24 @@
-class Menu extends Phaser.Scene{
-    constructor(){
+class Menu extends Phaser.Scene {
+    constructor() {
         super("menuScene");
     }
 
     preload() {
         // load audio
-        this.load.image('start', 'assets/start.png');
-        this.load.audio('sfx_explosion', './assets/baozha.wav');
-        this.load.audio('sfx_rocket', './assets/rocketsound.wav');
+        this.load.audio('sfx_select', './assets/blip_select12.wav');
+        this.load.audio('sfx_explosion', './assets/explosion38.wav');
+        this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
     }
 
-    create(){
-        this.add.rectangle(0, 0, 640, 480, 0x008080).setOrigin(0 ,0);
-        this.start = this.add.tileSprite(0,0,640,480, 'start').setOrigin(0,0);
-        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+    create() {
+        this.add.text(210,20, "Rocket Patrol 2.0");
+        this.add.text(120,220, "Use the arrow keys to move, and F to fire!");
+        this.add.text(250,250, "Press F to start!");
+        keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
     }
-
     update() {
-        if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-           game.settings = {
-             spaceshipSpeed: 3,
-             gameTimer: 60000    
-           }
-           this.scene.start('playScene');    
+        if (Phaser.Input.Keyboard.JustDown(keyF)) {
+            this.scene.start('playScene');
          }
-         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
-            game.settings = {
-              spaceshipSpeed: 4,
-              gameTimer: 40000
-              
-           }
-           this.scene.start('playScene');    
-         }
-     }
+    }
 }
